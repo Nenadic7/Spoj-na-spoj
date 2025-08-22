@@ -1,0 +1,346 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+  background:  whitesmoke;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgb(20, 20, 58);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Kad je scrollan - sakrij pretragu */
+header.scrolled .pretrazi {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 20px;
+}
+
+ .nav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(20, 20, 58);
+    height: 17vh;
+ }
+.nav{
+   position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgb(20, 20, 58);
+}
+
+ .pretrazi{
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(20, 20, 58);
+    height: 10vh;
+    padding: 10px;
+ }
+ .pretrazi1{
+   width: 30%;
+   max-width: 700%;
+   rgb(239,216,206);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-radius: 60px;
+   padding: 0 5px;
+   backdrop-filter: blur(4px) saturate(180%);
+   box-shadow:0 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+.pretrazi1 input{
+   background-color: transparent;
+   flex-basis: 25%;
+   border: 0;
+   outline: none;
+   padding: 24px 50px 24px 24px;
+   font-size: 18px;
+   color: #eee;
+}
+
+ ::placeholder{
+   color: rgb(3,2,67);
+ }
+ .pretrazi1 button img{
+   width: 20px;
+
+ }
+ .pretrazi1 button{
+   border: 0;
+   border-radius: 50%;
+   width: 30px;
+   height: 30px;
+   background:rgba(242, 208, 193, 0.906) ;
+   cursor: pointer;
+ }
+
+
+ .nav img{
+   width: 200px;
+   height: 145px;
+ }
+  .navigacija ul{
+    display: flex;
+    list-style: none;
+    padding: 20px 20px 0 20px;
+ }
+ .navigacija a{
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 20px;
+    background-color: rgba(20, 20, 58, 0.7);
+    color:rgba(242, 208, 193, 0.906);
+  }
+.poveznica:hover{
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    background-image: linear-gradient(rgb(0,123,255,0.5), rgb(2, 17, 33));
+  }
+/*
+.kontenjer1 {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+  background-image: url('assets/image_031.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-basis: 100%;
+  height:100vh;
+
+  padding: 60px 0;
+}
+.kontenjer1 img{
+  opacity: 0.6;
+  z-index: 0,5;
+} */
+.kontenjer1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 60px 0;
+  z-index: 1;
+  overflow: hidden;
+  color: white;
+}
+.kontenjer1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/image_031.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+.kontenjer1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+🔍
+
+.kontenjer1 h1,
+.kontenjer1 h2 {
+  margin: 10px 0;
+  color: rgba(242, 208, 193, 0.906);
+  background:linear-gradient(rgba(9, 48, 111, 0.8), rgb(20,20,58,0.8));
+  padding: 20px 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+ .o-nama{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: rgba(3, 2, 67);
+  margin: 15px 0;
+
+ }
+ .o-nama h2{
+  font-size: 40px;
+  color: rgba(242, 208, 193, 0.906);
+  padding-top: 40px;
+  text-align: center;
+  flex-basis: 100%;
+ }
+.o-nama div{
+  flex-basis: 40%;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  rgb(239,216,206);
+  margin:40px 10px;
+  transition: transform 0.3 ease-in-out;
+}
+.o-nama div:hover{
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+.o-nama div p{
+  text-align: center;
+  padding: 50px 10px;
+  color:rgb( 10,10,45);
+}
+
+.stavke{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: whitesmoke ;
+}
+.stavke h2{
+  display: block;
+  width: 100%;
+  height: 70px;
+  color: rgb(20,20,58);
+  background-color: rgba(242, 208, 193, 0.906);
+  align-content: center;
+  text-align: center;
+  margin: 1em;
+  box-shadow: 0 0 8px rgb(1, 20, 51,0.7);
+}
+.stavka1{
+  flex-basis: 30%;
+  padding: 20px 10px;
+  margin: 1em;
+  justify-content: space-evenly;
+  border: 1px solid transparent;
+  box-shadow: 0 0 8px rgb(1, 20, 51,0.7);
+  background-color: rgba(242, 208, 193, 0.906);
+  align-items: center;
+}
+.stavka1 li{
+  text-align:justify;
+  padding-left: 10px;
+  list-style: none;
+}
+.stavka1 li::before {
+  content: "🛠️";
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+.stavka1 a {
+  display: inline-block;
+  text-decoration:none;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(20,20,58);
+  margin-left:20px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+.stavka1 a:hover {
+  transform: translateY(-5px);
+}
+.radovi{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1em;
+  margin: 20px;
+  font-size: 20px;
+}
+.radovi img{
+  box-shadow: 0 0 8px rgb(1, 20, 51,0.7);
+  flex-basis: 32%;
+}
+.radovi p{
+  background-color: rgba(242, 208, 193, 0.906);
+  flex-basis: 100%;
+  height: 50px;
+  padding: 15px 5px 20px 10px;
+  color:rgb(20,20,58);
+}
+.radovi a{
+  text-decoration:none ;
+  color: rgb(20,20,58);
+  font-style: italic;
+}
+.radovi a:hover{
+   text-decoration:underline rgb(20,20,58) ;
+}
+.kontakt p, h2{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 20px;
+  font-size: 18px;
+}
+.kontakt{
+   background-color: rgba(242, 208, 193, 0.906);
+   margin: 0 30px;
+   color:rgb(20,20,58) ;
+   padding: 1em;
+  }
+.kontakt a{
+  color: black;
+  font-weight: bold;
+}
+.kontakt h2{
+  font-size: 28px;
+}
+footer {
+  margin: 10px 15px;
+  padding: 1em;
+  height: 100vh;
+  background-image: url('assets/footer.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  position: relative;
+}
+
+footer .overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1em;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+  .kolona1{
+    display: flex;
+    flex-basis: 20%;
+    flex-direction: column;
+    padding: 30px;
+    justify-content: right;
+  }
+  .karta {
+  /* flex-basis: 70%; */
+  min-width:700px;
+  align-items:flex-end;
+  justify-content: end;
+  
+}

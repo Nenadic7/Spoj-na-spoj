@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+    <title>Prijava</title>
+    <link rel="stylesheet" href="style (2).css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <img src="assets/logo.jpg" alt="Logo" width="150px" height="120px" />
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="hamburger">&#9776;</label>
+        <nav class="navigacija">
+          <ul>
+            <li><a href="index.html" class="poveznica">Naslovna</a></li>
+            <li><a href="usluge.html" class="poveznica">Usluge</a></li>
+            <li><a href="galerija.html" class="poveznica">Galerija</a></li>
+            <li>
+              <a href="kontakt.html" class="poveznica">Kontaktirajte nas</a>
+            </li>
+            <li><a href="prijava.html" class="poveznica">Prijava</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="prijava">
+      <div class="okvir-forme">
+        <!-- Prijava -->
+        <form class="forma forma-prijava aktivna" id="formaPrijava">
+          <h2 class="naslov-forme">Prijava</h2>
+          <input
+            type="text"
+            id="prijavaKorisnickoIme"
+            class="polje-unosa"
+            placeholder="Korisničko ime"
+            required
+          />
+          <input
+            type="password"
+            id="prijavaLozinka"
+            class="polje-unosa"
+            placeholder="Lozinka"
+            required
+          />
+          <button type="submit" class="gumb">Prijavi se</button>
+          <p class="tekst-link">
+            Nemate račun?
+            <span class="link" onclick="prikaziRegistraciju()"
+              >Registrirajte se</span
+            >
+          </p>
+        </form>
+
+        <!-- Registracija -->
+        <form class="forma forma-registracija" id="formaRegistracija">
+          <h2 class="naslov-forme">Registracija</h2>
+          <input
+            type="text"
+            id="regKorisnickoIme"
+            class="polje-unosa"
+            placeholder="Korisničko ime"
+            required
+          />
+          <input
+            type="email"
+            id="regEmail"
+            class="polje-unosa"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="password"
+            id="regLozinka"
+            class="polje-unosa"
+            placeholder="Lozinka"
+            required
+          />
+          <button type="submit" class="gumb">Registriraj se</button>
+          <p class="tekst-link">
+            Već imate račun?
+            <span class="link" onclick="prikaziPrijavu()">Prijavite se</span>
+          </p>
+        </form>
+      </div>
+    </main>
+    <div id="modal" class="modal">
+      <div class="modal-sadrzaj">
+        <span class="zatvori" onclick="zatvoriModal()">&times;</span>
+        <p>Vaša registracija je uspješno izvršena!</p>
+      </div>
+    </div>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDkZTq6hHOnaC3STTSOVM4O5bZa4gN_gU4",
+        authDomain: "spoj-na-spoj.firebaseapp.com",
+        databaseURL:
+          "https://spoj-na-spoj-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "spoj-na-spoj",
+        storageBucket: "spoj-na-spoj.firebasestorage.app",
+        messagingSenderId: "1017482186864",
+        appId: "1:1017482186864:web:17a59b598cacdfbd0c24b5",
+        measurementId: "G-8BXLHEKRZ7",
+      };
+
+      // Initialize Firebase
+
+      // const app = initializeApp(firebaseConfig);
+      // const firebaseAuth = window.firebase.auth;
+      // const firebaseDatabase = window.firebase.database;
+
+      const app = firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const database = firebase.database();
+
+      const formaPrijava = document.getElementById("formaPrijava");
+      const formaRegistracija = document.getElementById("formaRegistracija");
+
+      function prikaziRegistraciju() {
+        formaPrijava.classList.remove("aktivna");
+        formaRegistracija.classList.add("aktivna");
+      }
+
+      function prikaziPrijavu() {
+        formaRegistracija.classList.remove("aktivna");
+        formaPrijava.classList.add("aktivna");
+      }
+      window.addEventListener("load", function () {
+        document.querySelector(".okvir-forme").classList.add("animiraj");
+      });
+      function prikaziModal() {
+        document.getElementById("modal").style.display = "block";
+      }
+
+      function zatvoriModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+
+      // Registracija
+
+      formaRegistracija.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const korisnickoIme = document.getElementById("regKorisnickoIme").value;
+        const email = document.getElementById("regEmail").value;
+        const lozinka = document.getElementById("regLozinka").value;
+
+        auth
+          .createUserWithEmailAndPassword(email, lozinka)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            const userId = user.uid;
+
+            // Upis dodatnih podataka u bazu
+            database.ref("korisnici/" + userId).set({
+              korisnickoIme: korisnickoIme,
+              email: email,
+            });
+
+            prikaziModal(); // Prikazuje modal uspešne registracije
+            formaRegistracija.reset();
+            prikaziPrijavu();
+          })
+          .catch((error) => {
+            alert("Greška kod registracije: " + error.message);
+          });
+      });
+
+      // Prijava
+      formaPrijava.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("prijavaKorisnickoIme").value;
+        const password = document.getElementById("prijavaLozinka").value;
+
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            alert("Ulogovani ste kao: " + userCredential.user.email);
+            // Ovde možeš redirect ili nešto drugo nakon prijave
+          })
+          .catch((error) => {
+            alert("Greška kod prijave: " + error.message);
+          });
+      });
+      function prikaziModal() {
+        document.getElementById("modal").style.display = "block";
+      }
+
+      function zatvoriModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+
+      // Kada se klikne izvan modala – zatvori ga
+      window.onclick = function (event) {
+        const modal = document.getElementById("modal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // Registracija - prikaži modal nakon submit-a
+      // formaRegistracija.addEventListener("submit", function (e) {
+      //   e.preventDefault(); // sprečava reload
+      //   prikaziModal(); // otvori modal
+      //   formaRegistracija.reset(); // resetira unos
+      //   // prikaziPrijavu(); // (opcionalno: prebaci na prijavu)
+      // });
+    </script>
+  </body>
+</html>

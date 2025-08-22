@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontakt</title>
+    <link rel="stylesheet" href="style (2).css" />
+  </head>
+  <body id="tijelo">
+    <header>
+      <div class="nav">
+        <img src="assets/logo.jpg" alt="Logo" width="150px" height="120px" />
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="hamburger">&#9776;</label>
+        <nav class="navigacija">
+          <ul>
+            <li><a href="index.html" class="poveznica">Naslovna</a></li>
+            <li><a href="usluge.html" class="poveznica">Usluge</a></li>
+            <li><a href="galerija.html" class="poveznica">Galerija</a></li>
+            <li>
+              <a href="kontakt.html" class="poveznica">Kontaktirajte nas</a>
+            </li>
+            <li><a href="prijava.html" class="poveznica">Prijava</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="kontakt-div">
+        <h1>Kontakt</h1>
+        <p>
+          Ako se želite informirati o našim uslugama ili zatražiti ponudu,
+          slobodno nas kontaktirajte. <br />Naš tim stručnjaka bit će vam na
+          raspolaganju i rado će odgovoriti na sve vaše upite.
+        </p>
+      </div>
+
+      <form class="kontakt-forma" action="#" method="post">
+        <label for="ime">Vaše ime i prezime:</label>
+        <input
+          type="text"
+          id="ime"
+          name="ime"
+          placeholder="Ime i prezime"
+          required
+        />
+
+        <label for="email">Vaša e-pošta:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email"
+          required
+        />
+
+        <label for="tel">Broj telefona:</label>
+        <input
+          type="tel"
+          id="tel"
+          name="tel"
+          placeholder="broj telefona"
+          maxlength="10"
+          required
+        />
+
+        <label for="upit">Vaša poruka:</label>
+        <textarea
+          id="upit"
+          name="upit"
+          rows="5"
+          placeholder="Vaša poruka/upit"
+        ></textarea>
+
+        <button type="submit" class="dugme">Pošalji</button>
+      </form>
+    </main>
+  </body>
+  <footer>
+    <div class="overlay">
+      <div class="kolona">
+        <aside>
+          <h3>Sjedište</h3>
+          <p>
+            Spoj na spoj j.d.o.o. <br />
+            Tiha ulica 80<br />
+            Briješće, Osijek 31000 <br />
+            OIB: 125485668 <br />
+          </p>
+        </aside>
+        <br />
+        <aside>
+          <h3>Kontakt</h3>
+          <p>
+            Email: spojnaspoj@gmail.com <br />
+            Tel: 0999191211
+          </p>
+        </aside>
+      </div>
+      <div class="kolona2">
+        <h3>Radno vrijeme</h3>
+        <p>
+          Ponedjeljak-petak <br />
+          7:00- 15.00
+        </p>
+      </div>
+      <div class="karta">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.506160128149!2d18.623676975032822!3d45.52001897107488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ce69e0cd37d61%3A0x59646707f63903bd!2zVGloYSB1bC4gODAsIDMxMDAwLCBCcmlqZcWhxIdl!5e0!3m2!1shr!2shr!4v1749896084900!5m2!1shr!2shr"
+          width="400"
+          height="300"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+    <div class="copy">
+      &copy; 2025 Spoj na spoj j.d.o.o. Sva prava pridržana.
+    </div>
+  </footer>
+</html>
