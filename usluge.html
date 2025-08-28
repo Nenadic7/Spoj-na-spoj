@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.js"></script>
 
     <title>Usluge</title>
     <link rel="stylesheet" href="style (2).css" />
@@ -40,7 +41,17 @@
       </div>
       <h3 class="naslov-usluge">Naša ponuda usluga</h3>
       <section class="usluge2">
-        <div>
+        <div id="usluge-kontenjer">
+          <div>
+            <img src="assets/hammer.svg" width="50" height="50" alt="ikonica" />
+            <h4>Gipskartonski radovi</h4>
+            <p>Pregradni zidovi</p>
+            <p>Spušteni stropovi</p>
+            <p>Dekorativni elementi</p>
+          </div>
+        </div>
+
+        <!-- <div>
           <img src="assets/hammer.svg" width="50px" height="50px" />
           <h4>Gipskartonski radovi</h4>
           <p>Pregradni zidovi</p>
@@ -64,7 +75,7 @@
           <p>Izrada i obnova fasada</p>
           <p>Dekorativne fasade</p>
           <p>Završni slojevi</p>
-        </div>
+        </div> -->
       </section>
       <h2 class="najam-naslov">Najam građevinskog alata</h2>
       <section class="najam">
@@ -271,7 +282,7 @@
           ];
 
           for (const usluga of usluge) {
-            await db.collection("usluge").add(usluga);
+            await db.ref("usluge").push(usluga);
           }
 
           console.log("Usluge dodane u Firestore!");
@@ -279,10 +290,10 @@
         firebase.initializeApp(firebaseConfig);
 
         const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
 
         // dodajUsluge();
       </script>
+      <script src="script/usluge-script.js"></script>
     </main>
     <footer>
       <div class="overlay">

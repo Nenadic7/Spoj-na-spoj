@@ -338,24 +338,69 @@ footer .overlay {
   background-color: rgb(227, 217, 213);
 }
 
-.usluge2 {
-  margin: 0 0 5px 0;
-  padding: 30px;
+
+#usluge-kontenjer {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; 
+  justify-content: space-between;
+  gap: 20px;
+ 
+  padding: 10px 0;
+  box-sizing: border-box;
+  width: 100%;
 }
-.usluge2 div {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+#usluge-kontenjer > div {
+  flex-basis: 30%;
+ 
+  background-color: #fff;
   border: 1px solid #a4a2a2;
   border-radius: 8px;
   padding: 20px;
-  flex-basis: 32%;
-  flex-wrap: wrap;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  margin: 0 10px;
 }
+
+#usluge-kontenjer > div.visible {
+
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.usluge2 {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 30px 0;
+  box-sizing: border-box;
+}
+
+.usluge2 div {
+  flex: 1 1 0;
+  
+  max-width: 100%;
+
+  margin: 0 10px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #a4a2a2;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, transform 0.3s ease;
+}
+
+
+.usluge2 div:hover {
+  transform: scale(1.03);
+}
+
 
 .usluge2 div.visible {
   opacity: 1;
@@ -404,11 +449,12 @@ footer .overlay {
 
 .najam {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 .tekst-kutija {
   flex-basis: 30%;
+  box-sizing: border-box;
 }
 
 .najam-naslov {
@@ -492,7 +538,7 @@ footer .overlay {
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
+  width: 100%;s
   background-color: rgba(
     0,
     0,
