@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style (2).css" />
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="script/config.js"></script>
+
     <title>Spoj na spoj</title>
   </head>
   <body>
@@ -13,14 +18,21 @@
         <input type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" class="hamburger">&#9776;</label>
         <nav class="navigacija">
-          <ul>
+          <ul id="navLinks">
             <li><a href="index.html" class="poveznica">Naslovna</a></li>
             <li><a href="usluge.html" class="poveznica">Usluge</a></li>
-            <li><a href="usluge.html" class="poveznica">Galerija</a></li>
+            <li><a href="galerija.html" class="poveznica">Galerija</a></li>
             <li>
               <a href="kontakt.html" class="poveznica">Kontaktirajte nas</a>
             </li>
-            <li><a href="prijava.html" class="poveznica">Prijava</a></li>
+            <li id="navPrijava">
+              <a href="prijava.html" class="poveznica">Prijava</a>
+            </li>
+
+            <li id="navRacun" style="display: none">...</li>
+            <li id="navOdjava" style="display: none">
+              <a onclick="odjava()">Odjava</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -106,6 +118,7 @@
         </p>
       </div>
     </main>
+    <script src="script/script.js"></script>
   </body>
   <footer>
     <div class="overlay">

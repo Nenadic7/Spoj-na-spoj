@@ -6,6 +6,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.js"></script>
+    <script src="script/config.js"></script>
+    <script src="script/script.js"></script>
 
     <title>Usluge</title>
     <link rel="stylesheet" href="style (2).css" />
@@ -17,14 +19,21 @@
         <input type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" class="hamburger">&#9776;</label>
         <nav class="navigacija">
-          <ul>
+          <ul id="navLinks">
             <li><a href="index.html" class="poveznica">Naslovna</a></li>
             <li><a href="usluge.html" class="poveznica">Usluge</a></li>
             <li><a href="galerija.html" class="poveznica">Galerija</a></li>
             <li>
               <a href="kontakt.html" class="poveznica">Kontaktirajte nas</a>
             </li>
-            <li><a href="prijava.html" class="poveznica">Prijava</a></li>
+            <li id="navPrijava">
+              <a href="prijava.html" class="poveznica">Prijava</a>
+            </li>
+
+            <li id="navRacun" style="display: none">...</li>
+            <li id="navOdjava" style="display: none">
+              <a onclick="odjava()">Odjava</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -50,32 +59,6 @@
             <p>Dekorativni elementi</p>
           </div>
         </div>
-
-        <!-- <div>
-          <img src="assets/hammer.svg" width="50px" height="50px" />
-          <h4>Gipskartonski radovi</h4>
-          <p>Pregradni zidovi</p>
-          <p>Spušteni stropovi</p>
-          <p>Dekorativni elementi</p>
-        </div>
-        <div>
-          <img
-            src="assets/paint-roller-bucket-icon.webp"
-            width="50px"
-            height="50px"
-          />
-          <h4>Soboslikarski i ličilački radovi</h4>
-          <p>Klasično bojanje zidova</p>
-          <p>Strojno bojanje zidova</p>
-          <p>Dekorativne tehnike</p>
-        </div>
-        <div>
-          <img src="assets/kuca.png" width="50px" height="50px" />
-          <h4>Fasaderski radovi</h4>
-          <p>Izrada i obnova fasada</p>
-          <p>Dekorativne fasade</p>
-          <p>Završni slojevi</p>
-        </div> -->
       </section>
       <h2 class="najam-naslov">Najam građevinskog alata</h2>
       <section class="najam">
@@ -207,19 +190,8 @@
           <button class="zatrazi-ponudu" type="button">Zatraži ponudu</button>
         </a>
       </div>
-      <script>
-        const firebaseConfig = {
-          apiKey: "AIzaSyDkZTq6hHOnaC3STTSOVM4O5bZa4gN_gU4",
-          authDomain: "spoj-na-spoj.firebaseapp.com",
-          databaseURL:
-            "https://spoj-na-spoj-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "spoj-na-spoj",
-          storageBucket: "spoj-na-spoj.firebasestorage.app",
-          messagingSenderId: "1017482186864",
-          appId: "1:1017482186864:web:17a59b598cacdfbd0c24b5",
-          measurementId: "G-8BXLHEKRZ7",
-        };
-      </script>
+
+      <!-------  prikaz kartica najam strojeva   ------->
       <script>
         function prikaziTekst(dugme) {
           const roditelj = dugme.parentElement;
@@ -237,62 +209,7 @@
           }
         }
       </script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const elementi = document.querySelectorAll(".usluge2 div");
-          elementi.forEach((el, index) => {
-            setTimeout(() => {
-              el.classList.add("visible");
-            }, index * 200); // kašnjenje po elementu (200ms)
-          });
-        });
-      </script>
-
-      <script>
-        // ⚠️ Pokreni ovo SAMO JEDNOM da dodaš podatke
-        async function dodajUsluge() {
-          const usluge = [
-            {
-              naziv: "Gipskartonski radovi",
-              slika: "assets/hammer.svg",
-              stavke: [
-                "Pregradni zidovi",
-                "Spušteni stropovi",
-                "Dekorativni elementi",
-              ],
-            },
-            {
-              naziv: "Soboslikarski i ličilački radovi",
-              slika: "assets/paint-roller-bucket-icon.webp",
-              stavke: [
-                "Klasično bojanje zidova",
-                "Strojno bojanje zidova",
-                "Dekorativne tehnike",
-              ],
-            },
-            {
-              naziv: "Fasaderski radovi",
-              slika: "assets/kuca.png",
-              stavke: [
-                "Izrada i obnova fasada",
-                "Dekorativne fasade",
-                "Završni slojevi",
-              ],
-            },
-          ];
-
-          for (const usluga of usluge) {
-            await db.ref("usluge").push(usluga);
-          }
-
-          console.log("Usluge dodane u Firestore!");
-        }
-        firebase.initializeApp(firebaseConfig);
-
-        const app = firebase.initializeApp(firebaseConfig);
-
-        // dodajUsluge();
-      </script>
+      <!-- <script src="script/script.js"></script> -->
       <script src="script/usluge-script.js"></script>
     </main>
     <footer>

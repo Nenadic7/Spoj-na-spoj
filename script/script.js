@@ -1,155 +1,165 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyDkZTq6hHOnaC3STTSOVM4O5bZa4gN_gU4",
-  authDomain: "spoj-na-spoj.firebaseapp.com",
-  databaseURL:
-    "https://spoj-na-spoj-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "spoj-na-spoj",
-  storageBucket: "spoj-na-spoj.firebasestorage.app",
-  messagingSenderId: "1017482186864",
-  appId: "1:1017482186864:web:17a59b598cacdfbd0c24b5",
-  measurementId: "G-8BXLHEKRZ7",
-};
-
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const database = firebase.database();
-
+// ✅ Elementi forme
 const formaPrijava = document.getElementById("formaPrijava");
 const formaRegistracija = document.getElementById("formaRegistracija");
+const okvirForme = document.querySelector(".okvir-forme");
 
+// ✅ Prikaz registracije
 function prikaziRegistraciju() {
-  formaPrijava.classList.remove("aktivna");
-  formaRegistracija.classList.add("aktivna");
+  if (formaPrijava && formaRegistracija) {
+    formaPrijava.classList.remove("aktivna");
+    formaRegistracija.classList.add("aktivna");
+  }
 }
+window.prikaziRegistraciju = prikaziRegistraciju;
 
+// ✅ Prikaz prijave
 function prikaziPrijavu() {
-  formaRegistracija.classList.remove("aktivna");
-  formaPrijava.classList.add("aktivna");
+  if (formaRegistracija && formaPrijava) {
+    formaRegistracija.classList.remove("aktivna");
+    formaPrijava.classList.add("aktivna");
+  }
 }
+window.prikaziPrijavu = prikaziPrijavu;
 
+// ✅ Animacija forme pri učitavanju
 window.addEventListener("load", function () {
-  document.querySelector(".okvir-forme").classList.add("animiraj");
+  if (okvirForme) {
+    okvirForme.classList.add("animiraj");
 
-  // Prikaži ispravnu formu na osnovu hash-a
-  if (window.location.hash === "#register") {
-    prikaziRegistraciju();
-  } else {
-    prikaziPrijavu();
+    if (window.location.hash === "#register") {
+      prikaziRegistraciju();
+    } else {
+      prikaziPrijavu();
+    }
   }
 });
 
+// ✅ Modal prikaz
 function prikaziModal() {
-  document.getElementById("modal").style.display = "block";
+  const modal = document.getElementById("modal");
+  if (modal) modal.style.display = "block";
 }
-
 function zatvoriModal() {
-  document.getElementById("modal").style.display = "none";
+  const modal = document.getElementById("modal");
+  if (modal) modal.style.display = "none";
+}
+window.zatvoriModal = zatvoriModal;
+
+// ✅ REGISTRACIJA
+if (formaRegistracija) {
+  formaRegistracija.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const korisnickoIme = document.getElementById("regKorisnickoIme").value;
+    const email = document.getElementById("regEmail").value;
+    const lozinka = document.getElementById("regLozinka").value;
+
+    auth
+      .createUserWithEmailAndPassword(email, lozinka)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        return database.ref("korisnici/" + user.uid).set({
+          korisnickoIme,
+          email,
+        });
+      })
+      .then(() => {
+        prikaziModal();
+        formaRegistracija.reset();
+        prikaziPrijavu();
+      })
+      .catch((error) => {
+        alert("Greška kod registracije: " + error.message);
+      });
+  });
 }
 
-// Registracija
-formaRegistracija.addEventListener("submit", function (e) {
-  e.preventDefault();
+// ✅ PRIJAVA PREKO KORISNIČKOG IMENA
+if (formaPrijava) {
+  formaPrijava.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const korisnickoIme = document.getElementById("regKorisnickoIme").value;
-  const email = document.getElementById("regEmail").value;
-  const lozinka = document.getElementById("regLozinka").value;
+    const korisnickoImeUneseno = document.getElementById(
+      "prijavaKorisnickoIme"
+    ).value;
+    const lozinka = document.getElementById("prijavaLozinka").value;
 
-  auth
-    .createUserWithEmailAndPassword(email, lozinka)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      const userId = user.uid;
+    database
+      .ref("korisnici")
+      .orderByChild("korisnickoIme")
+      .equalTo(korisnickoImeUneseno)
+      .once("value")
+      .then((snapshot) => {
+        if (!snapshot.exists()) {
+          throw new Error("Korisničko ime nije pronađeno.");
+        }
 
-      // Spremi dodatne podatke
-      return database.ref("korisnici/" + userId).set({
-        korisnickoIme: korisnickoIme,
-        email: email,
-      });
-    })
-    .then(() => {
-      prikaziModal();
-      formaRegistracija.reset();
-      prikaziPrijavu();
-    })
-    .catch((error) => {
-      alert("Greška kod registracije: " + error.message);
-    });
-});
+        const korisnici = snapshot.val();
+        const userId = Object.keys(korisnici)[0];
+        const email = korisnici[userId].email;
 
-// Prijava
-formaPrijava.addEventListener("submit", function (e) {
-  e.preventDefault();
+        return auth.signInWithEmailAndPassword(email, lozinka);
+      })
+      .then((userCredential) => {
+        const user = userCredential.user;
 
-  const email = document.getElementById("prijavaKorisnickoIme").value;
-  const password = document.getElementById("prijavaLozinka").value;
+        return database.ref("korisnici/" + user.uid).once("value");
+      })
+      .then((snapshot) => {
+        const data = snapshot.val();
+        const korisnickoIme = data?.korisnickoIme || "Korisnik";
 
-  auth
-    .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+        const navRacun = document.getElementById("navRacun");
+        const navPrijava = document.getElementById("navPrijava");
+        const navOdjava = document.getElementById("navOdjava");
 
-      // Dohvati korisničko ime iz baze
-      return database
-        .ref("korisnici/" + user.uid)
-        .once("value")
-        .then((snapshot) => {
-          const data = snapshot.val();
-          const korisnickoIme = data?.korisnickoIme || "Korisnik";
-
-          // Ažuriraj navigaciju
-          document.getElementById("navPrijava").style.display = "none";
-          const navRacun = document.getElementById("navRacun");
+        if (navRacun) {
           navRacun.innerHTML = `<a href="#" class="poveznica">👤 ${korisnickoIme}</a>`;
           navRacun.style.display = "inline-block";
-          document.getElementById("navOdjava").style.display = "inline-block";
+        }
+        if (navPrijava) navPrijava.style.display = "none";
+        if (navOdjava) navOdjava.style.display = "inline-block";
 
-          // Redirect nakon prijave
-          window.location.href = "index.html";
-        });
-    })
-    .catch((error) => {
-      alert("Greška kod prijave: " + error.message);
-    });
-});
+        // Redirect ako želiš
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        alert("Greška kod prijave: " + error.message);
+      });
+  });
+}
 
-// Prati login stanje
+// ✅ PRIKAZ NAVIGACIJE NA OSNOVU AUTENTIFIKACIJE
 auth.onAuthStateChanged((user) => {
   const navPrijava = document.getElementById("navPrijava");
   const navRacun = document.getElementById("navRacun");
   const navOdjava = document.getElementById("navOdjava");
 
   if (user) {
-    navPrijava.style.display = "none";
-    navRacun.style.display = "inline-block";
-    navOdjava.style.display = "inline-block";
+    if (navPrijava) navPrijava.style.display = "none";
+    if (navOdjava) navOdjava.style.display = "inline-block";
 
-    // Prikaz imena korisnika
-    database
-      .ref("korisnici/" + user.uid)
-      .once("value")
-      .then((snapshot) => {
-        const data = snapshot.val();
-        if (data && data.korisnickoIme) {
-          navRacun.innerHTML = `<a href="#" class="poveznica">👤 ${data.korisnickoIme}</a>`;
-        }
-      });
+    if (navRacun) {
+      navRacun.style.display = "inline-block";
+
+      database
+        .ref("korisnici/" + user.uid)
+        .once("value")
+        .then((snapshot) => {
+          const data = snapshot.val();
+          const korisnickoIme = data?.korisnickoIme || "Korisnik";
+          navRacun.innerHTML = `<a href="#" class="poveznica">👤 ${korisnickoIme}</a>`;
+        });
+    }
   } else {
-    navPrijava.style.display = "inline-block";
-    navRacun.style.display = "none";
-    navOdjava.style.display = "none";
+    if (navPrijava) navPrijava.style.display = "inline-block";
+    if (navRacun) navRacun.style.display = "none";
+    if (navOdjava) navOdjava.style.display = "none";
   }
 });
 
-// Klik izvan modala zatvara modal
-window.onclick = function (event) {
-  const modal = document.getElementById("modal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-};
-
-// Odjava korisnika
+// ✅ ODJAVA
 function odjava() {
   auth
     .signOut()
@@ -161,3 +171,4 @@ function odjava() {
       alert("Greška prilikom odjave: " + error.message);
     });
 }
+window.odjava = odjava;

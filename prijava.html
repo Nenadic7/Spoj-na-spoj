@@ -7,6 +7,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
+    <script src="script/config.js"></script>
+
     <title>Prijava</title>
     <link rel="stylesheet" href="style (2).css" />
   </head>
@@ -43,18 +45,12 @@
               <a href="kontakt.html" class="poveznica">Kontaktirajte nas</a>
             </li>
             <li id="navPrijava">
-              <a
-                href="#"
-                class="poveznica"
-                onclick="prikaziPrijavu(); return false;"
-                >Prijava</a
-              >
+              <a href="prijava.html" class="poveznica">Prijava</a>
             </li>
-            <li id="navRacun" style="display: none">
-              <a href="#" class="poveznica">Moj račun</a>
-            </li>
+
+            <li id="navRacun" style="display: none">...</li>
             <li id="navOdjava" style="display: none">
-              <a href="#" class="poveznica" onclick="odjava()">Odjava</a>
+              <a onclick="odjava()">Odjava</a>
             </li>
           </ul>
         </nav>

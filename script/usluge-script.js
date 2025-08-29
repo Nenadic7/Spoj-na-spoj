@@ -62,6 +62,15 @@ function prikaziUsluge() {
 
 document.addEventListener("DOMContentLoaded", prikaziUsluge);
 
+document.addEventListener("DOMContentLoaded", function () {
+  const elementi = document.querySelectorAll(".usluge2 div");
+  elementi.forEach((el, index) => {
+    setTimeout(() => {
+      el.classList.add("visible");
+    }, index * 200); // kašnjenje po elementu (200ms)
+  });
+});
+
 // // Funkcija za prikaz usluga na stranici
 // function prikaziUsluge() {
 //   const uslugeRef = db.ref("usluge");
