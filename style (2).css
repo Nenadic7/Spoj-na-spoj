@@ -30,6 +30,9 @@ header {
 #menu-toggle {
   display: none;
 }
+.hamburger{
+  display: none;
+}
 
 .nav img {
   width: 200px;
@@ -386,9 +389,7 @@ footer .overlay {
 
 .usluge2 div {
   flex: 1 1 0;
-  
   max-width: 100%;
-
   margin: 0 10px;
   padding: 20px;
   background: white;
@@ -411,32 +412,13 @@ footer .overlay {
   transform: translateY(0);
 }
 
-.najam1 {
-  display: flex;
-  flex-wrap: wrap;
-  width: 400px;
-  height: 400px;
-  justify-content: space-around;
-}
-
-.tekst-kutija {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  flex-grow: 1;
-}
-
 .sakriveni-tekst {
   display: none;
   margin-top: 10px;
 }
 
 .dugme {
-  padding: 10px 20px;
+   padding: 10px 20px;
   background-color: rgba(20, 20, 58);
   color: white;
   border: none;
@@ -444,8 +426,10 @@ footer .overlay {
   cursor: pointer;
   margin-top: 15px;
   position: relative;
-  bottom: 0;
-}
+  bottom: 0; 
+  }
+
+
 
 .dugme:hover {
   background-color: #0056b3;
@@ -453,13 +437,12 @@ footer .overlay {
 
 .najam {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-.tekst-kutija {
-  flex-basis: 30%;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 30px 0;
   box-sizing: border-box;
 }
+
 
 .najam-naslov {
   display: block;
@@ -470,6 +453,50 @@ footer .overlay {
   align-content: center;
   background-color: rgb(227, 217, 213);
 }
+
+.tekst-kutija {
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 0;
+  min-height: 450px; /* možeš prilagoditi */
+  max-width: 100%;
+  margin: 0 10px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #a4a2a2;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, transform 0.3s ease;
+}
+
+
+.tekst-kutija:hover {
+  transform: scale(1.03);
+}
+
+.usluge2 div.visible,
+.tekst-kutija.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.usluge2 :hover,
+.tekst-kutija:hover {
+  transform: scale(1.03);
+}
+
+.najam,
+.usluge2 {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 30px 0;
+  box-sizing: border-box;
+  gap: 20px; 
+}
+
 
 .benefiti-div {
   background-color: #ffffff;
