@@ -67,11 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
   elementi.forEach((el, index) => {
     setTimeout(() => {
       el.classList.add("visible");
-    }, index * 200); // kašnjenje po elementu (200ms)
+    }, index * 200);
   });
 });
 
-//  Funkcija za dodavanje usluga u bazu — pokreni SAMO JEDNOM ako je potrebno
+//  Funkcija za dodavanje usluga u bazu
 /*
 function dodajUsluge() {
   const usluge = {

@@ -121,7 +121,7 @@ if (formaPrijava) {
         if (navPrijava) navPrijava.style.display = "none";
         if (navOdjava) navOdjava.style.display = "inline-block";
 
-        // Redirect ako želiš
+        // Redirect
         window.location.href = "index.html";
       })
       .catch((error) => {

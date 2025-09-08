@@ -112,25 +112,6 @@
         </a>
       </div>
 
-      <!-------  prikaz kartica najam strojeva   ------->
-      <script>
-        function prikaziTekst(dugme) {
-          const roditelj = dugme.parentElement;
-          const skriveniTekst = roditelj.querySelector(".sakriveni-tekst");
-
-          if (
-            skriveniTekst.style.display === "none" ||
-            skriveniTekst.style.display === ""
-          ) {
-            skriveniTekst.style.display = "block";
-            dugme.textContent = "Sakrij";
-          } else {
-            skriveniTekst.style.display = "none";
-            dugme.textContent = "Saznaj više";
-          }
-        }
-      </script>
-
       <script src="script/usluge-script.js"></script>
     </main>
     <footer>

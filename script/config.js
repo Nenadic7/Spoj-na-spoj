@@ -10,9 +10,9 @@ const firebaseConfig = {
   measurementId: "G-8BXLHEKRZ7",
 };
 
-// Inicijaliziraj Firebase
+// Inicijalizacija Firebasea
 firebase.initializeApp(firebaseConfig);
 
-// Zatim koristi firebase.auth()
+// firebase.auth()
 const auth = firebase.auth();
 const database = firebase.database();
