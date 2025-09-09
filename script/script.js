@@ -1,9 +1,9 @@
-// ✅ Elementi forme
+//  Elementi forme
 const formaPrijava = document.getElementById("formaPrijava");
 const formaRegistracija = document.getElementById("formaRegistracija");
 const okvirForme = document.querySelector(".okvir-forme");
 
-// ✅ Prikaz registracije
+//  Prikaz registracije
 function prikaziRegistraciju() {
   if (formaPrijava && formaRegistracija) {
     formaPrijava.classList.remove("aktivna");
@@ -12,7 +12,7 @@ function prikaziRegistraciju() {
 }
 window.prikaziRegistraciju = prikaziRegistraciju;
 
-// ✅ Prikaz prijave
+// Prikaz prijave
 function prikaziPrijavu() {
   if (formaRegistracija && formaPrijava) {
     formaRegistracija.classList.remove("aktivna");
@@ -21,7 +21,7 @@ function prikaziPrijavu() {
 }
 window.prikaziPrijavu = prikaziPrijavu;
 
-// ✅ Animacija forme pri učitavanju
+//  Animacija forme pri učitavanju
 window.addEventListener("load", function () {
   if (okvirForme) {
     okvirForme.classList.add("animiraj");
@@ -34,7 +34,7 @@ window.addEventListener("load", function () {
   }
 });
 
-// ✅ Modal prikaz
+//  Modal prikaz
 function prikaziModal() {
   const modal = document.getElementById("modal");
   if (modal) modal.style.display = "block";
@@ -45,7 +45,7 @@ function zatvoriModal() {
 }
 window.zatvoriModal = zatvoriModal;
 
-// ✅ REGISTRACIJA
+//  REGISTRACIJA
 if (formaRegistracija) {
   formaRegistracija.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -75,7 +75,7 @@ if (formaRegistracija) {
   });
 }
 
-// ✅ PRIJAVA PREKO KORISNIČKOG IMENA
+//  PRIJAVA PREKO KORISNIČKOG IMENA
 if (formaPrijava) {
   formaPrijava.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -130,7 +130,7 @@ if (formaPrijava) {
   });
 }
 
-// ✅ PRIKAZ NAVIGACIJE NA OSNOVU AUTENTIFIKACIJE
+// PRIKAZ NAVIGACIJE NA OSNOVU AUTENTIFIKACIJE
 auth.onAuthStateChanged((user) => {
   const navPrijava = document.getElementById("navPrijava");
   const navRacun = document.getElementById("navRacun");
@@ -159,7 +159,7 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// ✅ ODJAVA
+//  ODJAVA
 function odjava() {
   auth
     .signOut()
