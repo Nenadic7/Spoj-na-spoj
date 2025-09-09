@@ -43,3 +43,21 @@
 //       alert("Greška prilikom odjave: " + error.message);
 //     });
 // }
+
+const kontaktForma = document.querySelector(".kontakt-forma");
+
+if (kontaktForma) {
+  kontaktForma.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    alert("Hvala! Vaš upit je poslan.");
+    kontaktForma.reset();
+  });
+}
+
+//broj telefona
+const telInput = document.getElementById("tel");
+
+telInput.addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "").slice(0, 10);
+});

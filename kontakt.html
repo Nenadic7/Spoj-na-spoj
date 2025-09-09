@@ -8,7 +8,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="script/config.js"></script>
     <script src="script/script.js"></script>
-    <script src="script/auth.js"></script>
 
     <title>Kontakt</title>
     <link rel="stylesheet" href="style (2).css" />
@@ -50,6 +49,7 @@
         </p>
       </div>
 
+      <!-- <form class="kontakt-forma" action="#" method="post"> -->
       <form class="kontakt-forma" action="#" method="post">
         <label for="ime">Vaše ime i prezime:</label>
         <input
@@ -89,51 +89,52 @@
 
         <button type="submit" class="dugme">Pošalji</button>
       </form>
-    </main>
 
-    <footer>
-      <div class="overlay">
-        <div class="kolona">
-          <aside>
-            <h3>Sjedište</h3>
+      <footer>
+        <div class="overlay">
+          <div class="kolona">
+            <aside>
+              <h3>Sjedište</h3>
+              <p>
+                Spoj na spoj j.d.o.o. <br />
+                Tiha ulica 80<br />
+                Briješće, Osijek 31000 <br />
+                OIB: 125485668 <br />
+              </p>
+            </aside>
+            <br />
+            <aside>
+              <h3>Kontakt</h3>
+              <p>
+                Email: spojnaspoj@gmail.com <br />
+                Tel: 0999191211
+              </p>
+            </aside>
+          </div>
+          <div class="kolona2">
+            <h3>Radno vrijeme</h3>
             <p>
-              Spoj na spoj j.d.o.o. <br />
-              Tiha ulica 80<br />
-              Briješće, Osijek 31000 <br />
-              OIB: 125485668 <br />
+              Ponedjeljak-petak <br />
+              7:00- 15.00
             </p>
-          </aside>
-          <br />
-          <aside>
-            <h3>Kontakt</h3>
-            <p>
-              Email: spojnaspoj@gmail.com <br />
-              Tel: 0999191211
-            </p>
-          </aside>
+          </div>
+          <div class="karta">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.506160128149!2d18.623676975032822!3d45.52001897107488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ce69e0cd37d61%3A0x59646707f63903bd!2zVGloYSB1bC4gODAsIDMxMDAwLCBCcmlqZcWhxIdl!5e0!3m2!1shr!2shr!4v1749896084900!5m2!1shr!2shr"
+              width="400"
+              height="300"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
-        <div class="kolona2">
-          <h3>Radno vrijeme</h3>
-          <p>
-            Ponedjeljak-petak <br />
-            7:00- 15.00
-          </p>
+        <div class="copy">
+          &copy; 2025 Spoj na spoj j.d.o.o. Sva prava pridržana.
         </div>
-        <div class="karta">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.506160128149!2d18.623676975032822!3d45.52001897107488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ce69e0cd37d61%3A0x59646707f63903bd!2zVGloYSB1bC4gODAsIDMxMDAwLCBCcmlqZcWhxIdl!5e0!3m2!1shr!2shr!4v1749896084900!5m2!1shr!2shr"
-            width="400"
-            height="300"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
-      <div class="copy">
-        &copy; 2025 Spoj na spoj j.d.o.o. Sva prava pridržana.
-      </div>
-    </footer>
+      </footer>
+      <script src="script/kontakt-forma.js"></script>
+    </main>
   </body>
 </html>
